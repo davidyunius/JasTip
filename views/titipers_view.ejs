@@ -20,10 +20,9 @@
       </tr>
       <%})%>
     </table>
-    <form class="" action="/titipers/transaction/<%=dataTrip.dataValues.id%>" method="post">
+    <form class="" action="/users/titipers/transaction/<%=dataTrip.dataValues.id%>" method="post">
       <h5>NITIP APA NICH???</h5>
       <input type="hidden" name="trip" value="<%=dataTrip.userId%>" placeholder="">
-      <input type="hidden" name="user" value="<%=dataTrip.dataValues.id%>" placeholder="">
       <input type="text" name="barang" value="" placeholder="input barang yang mau dititip">
       <input type="text" name="jumlahBarang" value="" placeholder="input jumlahnya">
       <input type="submit" name="" value="TITIP!">

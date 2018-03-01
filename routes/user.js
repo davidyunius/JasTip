@@ -66,13 +66,13 @@ router.post('/login', (req, res, next) =>{
     if (user) {
       bcrypt.compare(req.body.password, user.password).then(isSuccess => {
         req.session.login = true
-        req.session.dataUser = {id: user.id}
+        req.session.dataUser = user.id
         req.session.role = user.role
         if (isSuccess) {
           if (user.role === '1') {
-            res.redirect('/users/jasa')
+            res.redirect('/users/berangkaters')
           } else if (user.role === '2') {
-            res.redirect('/users/titip')
+            res.redirect('/users/titipers')
           }
         } else {
           res.redirect('/users/login')
@@ -92,6 +92,8 @@ router.get('/jasa', auth.checkJasa, (req, res, next) => {
 })
 
 router.get('/titip', auth.checkTitip, (req, res, next) => {
+  console.log(req.session)
+  console.log('Check atas')
   res.render('titip')
 })
 

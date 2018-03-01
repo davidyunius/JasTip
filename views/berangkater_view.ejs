@@ -18,8 +18,8 @@
           <td><%=data.barang%></td>
           <td><%=data.jumlahBarang%></td>
           <%if(data.status = 'pending'){%>
-            <td><a href="/berangkaters/terima/<%=data.id%>"> <button type="button" name="button">TERIMA</button></a></td>
-            <td><a href="/berangkaters/tolak/<%=data.id%>"> <button type="button" name="button">TOLAK</button></a></td>
+            <td><a href="/users/berangkaters/terima/<%=data.id%>"> <button type="button" name="button">TERIMA</button></a></td>
+            <td><a href="/users/berangkaters/tolak/<%=data.id%>"> <button type="button" name="button">TOLAK</button></a></td>
           <%}else if(data.status = 'terima'){%>
             <td>DITERIMA</td>
           <%}%>

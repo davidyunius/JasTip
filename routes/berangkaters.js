@@ -7,7 +7,7 @@ router.get('/',(req,res)=>{
   let err = null
   Destination.findAll({
     where:{
-      id:1
+      id: req.session.dataUser
     },
     include:[User]
   }).then(dataDestination=>{

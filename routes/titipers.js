@@ -2,8 +2,9 @@ const {User,Destination,Transaction,Trip} = require('../models')
 const express = require ('express')
 const router = express.Router()
 const Op = require('sequelize').Op
+const auth = require('../helpers/authSession')
 
-router.get('/',(req,res)=>{
+router.get('/', auth.checkTitip,(req,res)=>{
   let err = null
   Trip.findAll({
     attributes:['id','userId','destinationId'],
@@ -14,11 +15,11 @@ router.get('/',(req,res)=>{
     res.render('titipers',{dataDestination:dataDestination,err:null})
   }).catch(err=>{
     res.send(err)
-    // console.log('error ',err);
+    
   })
 })
 
-router.get('/transaction/:idTrip',(req,res)=>{
+router.get('/transaction/:idTrip', auth.checkTitip,  (req,res)=>{
     Trip.findOne({
       attributes:['id','destinationId','userId'],
       where:{
@@ -28,7 +29,7 @@ router.get('/transaction/:idTrip',(req,res)=>{
     })
     .then(dataTrip=>{
       // console.log(dataTrip.dataValues.id);
-      // res.send(dataTrip)
+      // res.send('SADASDAS'+session)
       res.render('titipers_view',{dataTrip})
     })
   })
@@ -36,11 +37,13 @@ router.get('/transaction/:idTrip',(req,res)=>{
 
 
 router.post('/transaction/:idTrip',(req,res)=>{
+  
+  
   Transaction.create({
-    tripId:req.params.id,
-    userId:req.body.user,
+    tripId:req.params.idTrip,
+    userId: req.session.dataUser,
     barang:req.body.barang,
-    jumlahBarang:req.body.jumlahBarang
+    jumlahBarang:req.body.jumlahBarang,
   }).then(()=>{
     res.redirect(req.get(`referer`))
   })
