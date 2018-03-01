@@ -1,0 +1,27 @@
+<div class="ui tall stacked segment">
+<table class="ui celled compact table">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <%users.forEach((data,no) => {%>
+      <td><%=no+1%></td>
+      <td><%=data.name%></td>
+      <td><%=data.role%></td>
+      <td><%=data.email%></td>
+      <td><%=data.phone%></td>
+    </tr>
+    <%})%>
+  </tbody>
+</table>
+</div>
+<div>
+  <%- include('../views/partials/footer')%>
+</div>
