@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>JasTip</title>
+</head>
+<body>
+  <div>
+    <a href="/"><button>Home 🏠</button></a>
+  </div>
+  <div>
+    <a href="/users/login"><button>Login ⬇️</button></a>
+  </div>
+  <div>
+    <a href="https://api.whatsapp.com/send?phone=6281293402209"><button>Have Question ❓</button></a>
+  </div>
+</body>
+</html>
+<div>
+  <h2>Register Page</h2>
+</div>
+<div>
+<form action="" method="POST" class="user">
+  <input type="text" name="name" id="name" placeholder="Name">
+  <input type="text" name="email" id="email" placeholder="Email">
+  <input type="password" name="password" id="password" placeholder="Password">
+  <input type="text" name="phone" id="phone" placeholder="Phone">
+  <select name="role" id="role">
+    <option value="1">Tukang Jasa</option>
+    <option value="2">Tukang Nitip</option>
+  </select>
+  <button type="submit">Register</button>
+</form>
+</div>
+<div><%- include('../views/partials/footer')%></div>
