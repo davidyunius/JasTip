@@ -51,7 +51,7 @@ router.post('/register', (req, res, next) => {
   })
 })
 
-router.get('/login', auth, (req, res, next) => {
+router.get('/login', (req, res, next) => {
   res.render('login')
 })
 
@@ -67,12 +67,11 @@ router.post('/login', (req, res, next) =>{
       bcrypt.compare(req.body.password, user.password).then(isSuccess => {
         req.session.login = true
         req.session.dataUser = {id: user.id}
+        req.session.role = user.role
         if (isSuccess) {
-          console.log('success login', 'rolenya: '+ user.role);
           if (user.role === '1') {
             res.redirect('/users/jasa')
           } else if (user.role === '2') {
-            console.log(req.session.login, req.session.dataUser);
             res.redirect('/users/titip')
           }
         } else {
@@ -84,16 +83,15 @@ router.post('/login', (req, res, next) =>{
 })
 
 router.get('/logout', (req, res, next) => {
-  res.flash
   req.session.destroy()
   res.redirect('/users/login')
 })
 
-router.get('/jasa', (req, res, next) => {
+router.get('/jasa', auth.checkJasa, (req, res, next) => {
   res.render('jasa')
 })
 
-router.get('/titip', (req, res, next) => {
+router.get('/titip', auth.checkTitip, (req, res, next) => {
   res.render('titip')
 })
 

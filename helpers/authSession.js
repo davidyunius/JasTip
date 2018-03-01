@@ -1,9 +1,22 @@
-let sessionChecker = (req, res, next) => {
-    if (req.session.user && req.cookies.user_sid) {
-        res.redirect('/users/login');
-    } else {
-        next();
-    }
-};
+module.exports = {
+    checkJasa (req,res,next){
+        
+        if(req.session.role === '1'){
+            next()
+        }else if(req.session.role === '2'){
+            res.redirect('/users/titip')
+        }else{
+            res.redirect('/users/login')
+        }
+    },
 
-module.exports = sessionChecker
+    checkTitip(req, res, next){
+        if (req.session.role === '2') {
+            next()
+        } else if (req.session.role === '1') {
+            res.redirect('/users/jasa')
+        } else {
+            res.redirect('/users/login')
+        }
+    }
+}
