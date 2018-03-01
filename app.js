@@ -9,6 +9,8 @@ const morgan = require('morgan')
 
 const index = require('./routes/index')
 const users = require('./routes/user')
+let berangkaters = require ('./routes/berangkaters')
+let titipers = require ('./routes/titipers')
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -27,6 +29,8 @@ app.use(session({
 
 app.use('/', index)
 app.use('/users', users)
+app.use('/berangkaters',berangkaters)
+app.use('/titipers',titipers)
 
 app.listen(3000, () => {
     console.log('App is now listening on port 3000');

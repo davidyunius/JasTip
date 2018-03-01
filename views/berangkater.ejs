@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<%include ./partials/headerb%>
+  <head>
+    <meta charset="utf-8">
+    <title>DESTINATION</title>
+  </head>
+  <h1>LIST DESTINATION</h1>
+  <body>
+    <table border = "1">
+      <thead>
+        <td>No.</td>
+        <td>Location</td>
+        <td>Departure</td>
+        <td>Arrival</td>
+      </thead>
+      <%dataDestination.forEach((data,index)=>{%>
+          <tr>
+              <td><%= index+1 %></td>
+              <td><%=data.location%></td>
+              <td><%=data.departure%></td>
+              <td><%=data.arrival%></td>
+              <td> <a href="/berangkaters/showlist/<%=data.id%>/<%=data.Users[0].id%>"><button type="button" name="button">LIHAT PESANAN</button></a> </td>
+              <td></td>
+          </tr>
+      <%})%>
+    </table>
+  </body>
+</html>
