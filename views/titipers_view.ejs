@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>VIEW TITIPERS</title>
+  </head>
+  <body>
+    <h3>VIEW LIST TITIPERS PER TRIP</h3>
+    <table border = "1">
+      <thead>
+        <td>Tr. ID</td>
+        <td>Barang</td>
+        <td>Quantity</td>
+      </thead>
+      <%dataTrip.Transactions.forEach(data=>{%>
+      <tr>
+          <td><%=data.id%></td>
+          <td><%=data.barang%></td>
+          <td><%=data.jumlahBarang%></td>
+      </tr>
+      <%})%>
+    </table>
+    <form class="" action="/titipers/transaction/<%=dataTrip.dataValues.id%>" method="post">
+      <h5>NITIP APA NICH???</h5>
+      <input type="hidden" name="trip" value="<%=dataTrip.userId%>" placeholder="">
+      <input type="hidden" name="user" value="<%=dataTrip.dataValues.id%>" placeholder="">
+      <input type="text" name="barang" value="" placeholder="input barang yang mau dititip">
+      <input type="text" name="jumlahBarang" value="" placeholder="input jumlahnya">
+      <input type="submit" name="" value="TITIP!">
+    </form>
+  </body>
+</html>

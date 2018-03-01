@@ -1,0 +1,28 @@
+{
+  "name": "JasTip",
+  "version": "1.0.0",
+  "description": "aplikasi jasa titip online",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidyunius/JasTip.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidyunius/JasTip/issues"
+  },
+  "homepage": "https://github.com/davidyunius/JasTip#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "faker": "^4.1.0",
+    "pg": "^7.4.1",
+    "sequelize": "^4.35.0"
+  }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>VIEW TITIPERS</title>
+  </head>
+  <body>
+    <h3>VIEW LIST TITIPERS</h3>
+    <table border = "1">
+      <thead>
+        <td>Tr. ID</td>
+        <td>Barang</td>
+        <td>Quantity</td>
+      </thead>
+      <%dataTrip.Transactions.forEach(data=>{%>
+      <tr>
+          <td><%=data.id%></td>
+          <td><%=data.barang%></td>
+          <td><%=data.jumlahBarang%></td>
+          <%if(data.status = 'pending'){%>
+            <td><a href="/berangkaters/terima/<%=data.id%>"> <button type="button" name="button">TERIMA</button></a></td>
+            <td><a href="/berangkaters/tolak/<%=data.id%>"> <button type="button" name="button">TOLAK</button></a></td>
+          <%}else if(data.status = 'terima'){%>
+            <td>DITERIMA</td>
+          <%}%>
+      </tr>
+      <%})%>
+    </table>
+  </body>
+</html>
