@@ -7,12 +7,24 @@ const auth = require('../helpers/authSession')
 
 let title = 'User'
 //user page
-router.get('/', (req, res, next) => {
-  Models.User.findAll().then(users => {
-    res.render('user', {users, err: req.query.err})
-  }).catch(err => {
-    next(err)
-  })
+// router.get('/', (req, res, next) => {
+//   Models.User.findAll().then(users => {
+//     let checkLogin = false 
+//     if (req.session.login) {
+//       checkLogin = true
+//     }
+//     res.render('index', {users, err: req.query.err, checkLogin})
+//   }).catch(err => {
+//     next(err)
+//   })
+// })
+
+router.get('/', (req, res) => {
+  let checkLogin = false
+  if (req.session.login) {
+    checkLogin = true
+  }
+  res.render('index')
 })
 
 router.get('/register', (req, res, next) => {
@@ -52,21 +64,38 @@ router.post('/login', (req, res, next) =>{
     }
   }).then(user => {
     if (user) {
-      let success = bcrypt.compare(req.body.password, user.password)
-      if (success) {
+      bcrypt.compare(req.body.password, user.password).then(isSuccess => {
         req.session.login = true
-        req.session.user = user
-        res.redirect('/')
-      }
+        req.session.dataUser = {id: user.id}
+        if (isSuccess) {
+          console.log('success login', 'rolenya: '+ user.role);
+          if (user.role === '1') {
+            res.redirect('/users/jasa')
+          } else if (user.role === '2') {
+            console.log(req.session.login, req.session.dataUser);
+            res.redirect('/users/titip')
+          }
+        } else {
+          res.redirect('/users/login')
+        }
+      })
     }
   }).catch(next)
 })
 
 router.get('/logout', (req, res, next) => {
+  res.flash
   req.session.destroy()
-  res.redirect('/')
+  res.redirect('/users/login')
 })
 
+router.get('/jasa', (req, res, next) => {
+  res.render('jasa')
+})
+
+router.get('/titip', (req, res, next) => {
+  res.render('titip')
+})
 
 
 module.exports = router

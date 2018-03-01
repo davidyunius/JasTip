@@ -2180,6 +2180,10 @@ repeat-string@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
 
+req-flash@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/req-flash/-/req-flash-0.0.3.tgz#5e48b1a319879672a6339e0d603935a77879e470"
+
 request@2.81.0:
   version "2.81.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
