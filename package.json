@@ -1,0 +1,32 @@
+{
+  "name": "JasTip",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/davidyunius/JasTip.git",
+  "author": "davidyunius <32894219+davidyunius@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "apicache": "^1.2.0",
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "debug": "^3.1.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "isemail": "^3.1.1",
+    "moment": "^2.20.1",
+    "morgan": "^1.9.0",
+    "nodemailer": "^4.6.0",
+    "nodemon": "^1.17.1",
+    "pg": "^7.4.1",
+    "reload": "^2.2.2",
+    "req-flash": "^0.0.3",
+    "sequelize": "^4.35.0",
+    "sequelize-cli": "^4.0.0",
+    "serve-favicon": "^2.4.5"
+  }
+}
