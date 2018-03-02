@@ -12,7 +12,7 @@ router.get('/',(req,res)=>{
     include:[Destination]
   }).then(dataUsers=>{
     // res.send(dataUsers)
-    res.render('berangkaters',{dataUsers,err:null})
+    res.render('berangkater',{dataUsers,err:null})
   }).catch(err=>{
     res.send(err)
     // console.log('error ',err);
@@ -54,7 +54,7 @@ router.post('/add',(req,res)=>{
       destinationId:dataDestination.id,
       userId:req.session.userName
     })
-    res.redirect('/berangkater')
+    res.redirect('/users/berangkaters')
   })
   .catch(err=>{
     // res.send(err.errors)
@@ -109,7 +109,7 @@ router.post('/update/:id',(req,res)=>{
       id:req.params.id
     }
   }).then(()=>{
-    res.redirect('/berangkaters')
+    res.redirect('/berangkater')
   })
 })
 
@@ -119,7 +119,7 @@ router.get('/delete/:id',(req,res)=>{
       id:req.params.id
     }
   }).then(()=>{
-    res.redirect('/berangkaters')
+    res.redirect('/berangkater')
   })
 })
 

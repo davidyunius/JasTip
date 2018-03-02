@@ -29,7 +29,6 @@ router.get('/transaction/:idTrip', auth.checkTitip,  (req,res)=>{
     })
     .then(dataTrip=>{
       // console.log(dataTrip.dataValues.id);
-      // res.send('SADASDAS'+session)
       res.render('titipers_view',{dataTrip})
     })
   })
@@ -44,8 +43,19 @@ router.post('/transaction/:idTrip',(req,res)=>{
     userId: req.session.dataUser,
     barang:req.body.barang,
     jumlahBarang:req.body.jumlahBarang,
+    status: req.body.status
   }).then(()=>{
     res.redirect(req.get(`referer`))
+  })
+})
+
+router.get('/transaction/:id',(req,res)=>{
+  Transaction.findAll({
+    where:{
+      id:req.session.dataUsers
+    }
+  }).then(dataTransactions=>{
+    res.render('userTrans',{dataTransactions})
   })
 })
 

@@ -42,7 +42,7 @@ router.post('/register', (req, res, next) => {
     createdAt: new Date(),
     updatedAt: new Date()
   }).then(data => {
-    res.redirect('/users/register')
+    res.redirect('/users/login')
   }).catch(err => {
     if (!err.errors[0]) {
       err.errors[0].message = null
