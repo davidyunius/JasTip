@@ -5,32 +5,32 @@ const Op = require('sequelize').Op
 
 router.get('/',(req,res)=>{
   let err = null
-  Destination.findAll({
+  User.findOne({
     where:{
-      id: req.session.dataUser
+      id:2
     },
-    include:[User]
-  }).then(dataDestination=>{
-    // res.send(dataDestination)
-    res.render('berangkater',{dataDestination:dataDestination,err:null})
+    include:[Destination]
+  }).then(dataUsers=>{
+    // res.send(dataUsers)
+    res.render('berangkaters',{dataUsers,err:null})
   }).catch(err=>{
     res.send(err)
     // console.log('error ',err);
   })
 })
 
-router.get('/showlist/:idDestination/:idUser',(req,res)=>{
+router.get('/showlist/:idUser/:idDestination',(req,res)=>{
     Trip.findOne({
       attributes:['id','destinationId','userId'],
       where:{
-        userId:req.params.idDestination,
-        destinationId:req.params.idUser
+        userId:req.params.idUser,
+        destinationId:req.params.idDestination
       },
       include:[Transaction]
     })
     .then(dataTrip=>{
       // console.log(dataTrip.dataValues.id);
-      // res.send(dataTrip)
+      // res.send(dataTrip.Transactions[0])
       res.render('berangkater_view',{dataTrip})
     })
   })
@@ -43,12 +43,18 @@ router.get('/add',(req,res)=>{
 
 router.post('/add',(req,res)=>{
   Destination.create({
-    name:req.body.name,
-    brand:req.body.brand,
-    codeitem:req.body.codeitem
+    location:req.body.location,
+    departure:req.body.departure,
+    arrival:req.body.arrival,
+    createdAt:new Date(),
+    updatedAt:new Date()
   })
-  .then(()=>{
-    res.redirect('/items')
+  .then((dataDestination)=>{
+    Trip.create({
+      destinationId:dataDestination.id,
+      userId:req.session.userName
+    })
+    res.redirect('/berangkater')
   })
   .catch(err=>{
     // res.send(err.errors)
@@ -57,53 +63,53 @@ router.post('/add',(req,res)=>{
 })
 
 router.get('/terima/:id',(req,res)=>{
-  Destination
-  .findOne({
+  let obj = {
+    status:'2'
+  }
+  Transaction.update(obj,{
     where:{
       id:req.params.id
     }
   }).then(dataDestinations=>{
-    res.render('updateDestination',{dataDestination:dataDestination,err:null})
+    res.redirect(req.get(`referer`))
   })
 })
 
 router.get('/tolak/:id',(req,res)=>{
-  Destination
-  .findOne({
+  let obj ={
+    status:'3'
+  }
+  Transaction.update(obj,{
     where:{
       id:req.params.id
     }
   }).then(dataDestinations=>{
-    res.render('updateDestination',{dataDestination:dataDestination,err:null})
+    res.redirect(req.get(`referer`))
+  })
+})
+
+router.get('/update/:id',(req,res)=>{
+  Destination.findOne({
+    where:{
+      id:req.params.id
+    }
+  }).then(dataDestination=>{
+    res.render('updateDestination',{dataDestination})
   })
 })
 
 router.post('/update/:id',(req,res)=>{
   let objUpdate = {
-    id:req.body.id,
-    name:req.body.name,
-    brand:req.body.brand,
-    codeitem:req.body.codeitem
+    location:req.body.location,
+    departure:req.body.departure,
+    arrival:req.body.arrival
   }
-  Destination
-  .findOne({
+  Destination.update(objUpdate,{
     where:{
       id:req.params.id
     }
-  }).then(dataDestinations=>{
-    let a = JSON.parse(JSON.stringify(dataDestination))
-    Destination.update(objUpdate,{
-      where:{
-        id:a.id
-      }
-    }).then(()=>{
-      res.redirect('/items')
-    }).catch(err=>{
-      console.log(err);
-      res.render('updateDestination',{dataDestinations:a,err:err})
-    })
-  }).catch(err=>{
-    res.render('updateDestination',{dataDestination:a,err:err})
+  }).then(()=>{
+    res.redirect('/berangkaters')
   })
 })
 
@@ -113,17 +119,8 @@ router.get('/delete/:id',(req,res)=>{
       id:req.params.id
     }
   }).then(()=>{
-    res.redirect('/items')
+    res.redirect('/berangkaters')
   })
 })
-
-router.get('/titipers/:id',(req,res)=>{
-  Destination.findAll()
-  .then(dataDestination=>{
-
-  })
-})
-
-
 
 module.exports = router;

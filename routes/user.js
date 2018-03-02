@@ -9,7 +9,7 @@ let title = 'User'
 //user page
 // router.get('/', (req, res, next) => {
 //   Models.User.findAll().then(users => {
-//     let checkLogin = false 
+//     let checkLogin = false
 //     if (req.session.login) {
 //       checkLogin = true
 //     }

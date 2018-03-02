@@ -15,7 +15,7 @@ router.get('/', auth.checkTitip,(req,res)=>{
     res.render('titipers',{dataDestination:dataDestination,err:null})
   }).catch(err=>{
     res.send(err)
-    
+
   })
 })
 
@@ -37,8 +37,8 @@ router.get('/transaction/:idTrip', auth.checkTitip,  (req,res)=>{
 
 
 router.post('/transaction/:idTrip',(req,res)=>{
-  
-  
+
+
   Transaction.create({
     tripId:req.params.idTrip,
     userId: req.session.dataUser,

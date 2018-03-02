@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     tripId: DataTypes.INTEGER,
     barang: DataTypes.TEXT,
     jumlahBarang: DataTypes.INTEGER,
-    userName: DataTypes.STRING
+    userName: DataTypes.STRING,
+    status: DataTypes.STRING
   }, {});
   Transaction.associate = function(models) {
     Transaction.belongsTo(models.Trip,{foreignKey:'tripId'})
