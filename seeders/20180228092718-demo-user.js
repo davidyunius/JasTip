@@ -7,7 +7,7 @@ module.exports = {
       role: 1,
       status: 1,
       email: 'agroaarr@gmail.com',
-      password: 'a9r4',
+      password: 'admin',
       phone: '081234567890',
       createdAt: new Date(),
       updatedAt: new Date()
@@ -16,7 +16,7 @@ module.exports = {
         role: 2,
         status: 1,
         email: 'gustafvo@yahoo.com',
-        password: 'gu5t4f',
+        password: 'admin',
         phone: '081212121212',
         createdAt: new Date(),
         updatedAt: new Date()

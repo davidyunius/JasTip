@@ -66,5 +66,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+  User.associate = function (models) {
+    User.belongsToMany(models.Destination, { through: 'Trip', foreignKey: 'userId' })
+  };
   return User;
 };

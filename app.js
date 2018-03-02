@@ -29,8 +29,8 @@ app.use(session({
 
 app.use('/', index)
 app.use('/users', users)
-app.use('/berangkaters',berangkaters)
-app.use('/titipers',titipers)
+app.use('/users/berangkaters',berangkaters)
+app.use('/users/titipers',titipers)
 
 app.listen(3000, () => {
     console.log('App is now listening on port 3000');

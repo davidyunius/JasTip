@@ -9,7 +9,7 @@ let title = 'User'
 //user page
 // router.get('/', (req, res, next) => {
 //   Models.User.findAll().then(users => {
-//     let checkLogin = false 
+//     let checkLogin = false
 //     if (req.session.login) {
 //       checkLogin = true
 //     }
@@ -42,7 +42,7 @@ router.post('/register', (req, res, next) => {
     createdAt: new Date(),
     updatedAt: new Date()
   }).then(data => {
-    res.redirect('/users/register')
+    res.redirect('/users/login')
   }).catch(err => {
     if (!err.errors[0]) {
       err.errors[0].message = null
@@ -66,13 +66,13 @@ router.post('/login', (req, res, next) =>{
     if (user) {
       bcrypt.compare(req.body.password, user.password).then(isSuccess => {
         req.session.login = true
-        req.session.dataUser = {id: user.id}
+        req.session.dataUser = user.id
         req.session.role = user.role
         if (isSuccess) {
           if (user.role === '1') {
-            res.redirect('/users/jasa')
+            res.redirect('/users/berangkaters')
           } else if (user.role === '2') {
-            res.redirect('/users/titip')
+            res.redirect('/users/titipers')
           }
         } else {
           res.redirect('/users/login')
@@ -92,6 +92,8 @@ router.get('/jasa', auth.checkJasa, (req, res, next) => {
 })
 
 router.get('/titip', auth.checkTitip, (req, res, next) => {
+  console.log(req.session)
+  console.log('Check atas')
   res.render('titip')
 })
 

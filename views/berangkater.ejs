@@ -7,6 +7,9 @@
   </head>
   <h1>LIST DESTINATION</h1>
   <body>
+    <%if(err){%>
+      err.message
+    <%}%>
     <table border = "1">
       <thead>
         <td>No.</td>
@@ -14,14 +17,15 @@
         <td>Departure</td>
         <td>Arrival</td>
       </thead>
-      <%dataDestination.forEach((data,index)=>{%>
+      <%dataUsers.Destinations.forEach((data,index)=>{%>
           <tr>
               <td><%= index+1 %></td>
               <td><%=data.location%></td>
               <td><%=data.departure%></td>
               <td><%=data.arrival%></td>
-              <td> <a href="/berangkaters/showlist/<%=data.id%>/<%=data.Users[0].id%>"><button type="button" name="button">LIHAT PESANAN</button></a> </td>
-              <td></td>
+              <td> <a href="/users/berangkaters/showlist/<%=dataUsers.id%>/<%=data.id%>"><button type="button" name="button">LIHAT PESANAN</button></a> </td>
+              <td> <a href="/users/berangkaters/update/<%=data.id%>"><button type="button" name="button">UPDATE</button></a> </td>
+              <td> <a href="/users/berangkaters/delete/<%=data.id%>"><button type="button" name="button">DELETE</button></a> </td>
           </tr>
       <%})%>
     </table>

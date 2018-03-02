@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <%include ./partials/headert%>
     <title>VIEW TITIPERS</title>
   </head>
   <body>
@@ -10,18 +11,20 @@
       <thead>
         <td>Tr. ID</td>
         <td>Barang</td>
-        <td>Quantity</td>
+        <td>Quantity</td>a
       </thead>
       <%dataTrip.Transactions.forEach(data=>{%>
       <tr>
           <td><%=data.id%></td>
           <td><%=data.barang%></td>
           <td><%=data.jumlahBarang%></td>
-          <%if(data.status = 'pending'){%>
-            <td><a href="/berangkaters/terima/<%=data.id%>"> <button type="button" name="button">TERIMA</button></a></td>
-            <td><a href="/berangkaters/tolak/<%=data.id%>"> <button type="button" name="button">TOLAK</button></a></td>
-          <%}else if(data.status = 'terima'){%>
+          <%if(data.status === '1'){%>
+            <td><a href="/users/berangkaters/terima/<%=data.id%>"> <button type="button" name="button">TERIMA</button></a></td>
+            <td><a href="/users/berangkaters/tolak/<%=data.id%>"> <button type="button" name="button">TOLAK</button></a></td>
+          <%}else if(data.status === '2'){%>
             <td>DITERIMA</td>
+          <%}else{%>
+            <td>REJECTED</td>
           <%}%>
       </tr>
       <%})%>
